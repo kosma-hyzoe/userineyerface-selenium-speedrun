@@ -1,0 +1,17 @@
+{
+  "baseUrl": "https://userinyerface.com",
+  "fileUploadScript": {
+      "Windows": "src\\test\\resources\\fileUpload.exe",
+      "Linux": "src/test/resources/fileUpload.sh"
+    },
+  "waits": {
+    "uploadImage": {
+      "seconds": 30,
+      "milliseconds": 0
+    },
+    "hideHelpForm": {
+      "seconds": 15,
+      "milliseconds": 0
+    }
+  }
+}
