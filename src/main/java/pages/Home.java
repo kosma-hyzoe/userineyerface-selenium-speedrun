@@ -11,7 +11,8 @@ public class Home {
        this.driver = driver;
     }
 
-    public void goToTheNextPage(){
+    public Card1LoginInfo goToTheNextPage(){
         driver.findElement(startLinkLocator).click();
+        return new Card1LoginInfo(driver);
     }
 }

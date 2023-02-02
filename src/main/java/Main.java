@@ -4,7 +4,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pages.Card1Password;
+import pages.Card1LoginInfo;
+import pages.Card2ThisIsMe;
+import pages.Card3PersonalDetails;
 import pages.Home;
 
 import java.io.IOException;
@@ -39,16 +41,21 @@ public class Main {
     public static void main(String[] args) {
         try {
             driver.get("https://userinyerface.com/");
-
             Home home = new Home(driver);
-            home.goToTheNextPage();
 
+            Card1LoginInfo card1LoginInfo = home.goToTheNextPage();
             startTime = System.nanoTime();
 
-            Card1Password card1Password = new Card1Password(driver);
-            card1Password.fillPasswordAndEmail("foo", "bar", "Foobar1234");
-            card1Password.acceptTermsAndConditions();
-            card1Password.goToTheNextPage();
+            card1LoginInfo.fillInLoginInfo("foo", "bar", "Foobar1234");
+            card1LoginInfo.acceptTermsAndConditions();
+
+            Card2ThisIsMe card2ThisIsMe = card1LoginInfo.goToTheNextPage();
+
+            card2ThisIsMe.uploadImageManually(15);
+            card2ThisIsMe.chooseInterests("ponies", "enveloppes", "closets");
+
+            Card3PersonalDetails card3PersonalDetails = card2ThisIsMe.goToNextPage();
+
         } finally {
             long endTime = System.nanoTime();
             System.out.println("Measured time: " + getHumanReadableTime(endTime - startTime));
