@@ -2,8 +2,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pages.*;
 
 import java.io.IOException;
@@ -53,11 +51,12 @@ public class Main {
 
             Card3PersonalDetails card3PersonalDetails = card2ThisIsMe.goToNextPage();
 
-            card3PersonalDetails.fillInputFields();
+            card3PersonalDetails.fillInputFields("foo");
             card3PersonalDetails.selectDropdownFields(2022, 1, "April");
 
             Card4ProveYouAreHuman card4ProveYouAreHuman = card3PersonalDetails.goToNextPage();
             card4ProveYouAreHuman.checkAllCheckboxes();
+
             YouAreAwesome youAreAwesome = card4ProveYouAreHuman.validate();
             System.out.println("Time on page: " + youAreAwesome.getTime());
 
