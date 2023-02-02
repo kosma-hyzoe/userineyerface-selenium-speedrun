@@ -7,30 +7,30 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.locators.RelativeLocator;
 
 
-public class Card1Password extends Card {
+public class Card1LoginInfo extends Card {
     By subDomainLocator = By.className("dropdown__field");
     By dotOrgChoiceLocator = RelativeLocator.with(By.tagName("div")).below(subDomainLocator);
     By iDoNotAcceptTermsAndConditionsLocator = By.className("checkbox__box");
     By nextLinkLocator = By.xpath("//a[contains(@class, 'button--secondary') and text()='Next']");
 
-    public Card1Password(WebDriver driver) {
+    public Card1LoginInfo(WebDriver driver) {
         super(driver);
     }
 
-    private static By getCredentialsLocator(String placeholder){
-        return By.xpath(String.format("//input[contains(@placeholder, '%s')]", placeholder));
+    private WebElement getCredentials(String placeholder){
+        return driver.findElement(By.xpath(String.format("//input[contains(@placeholder, '%s')]", placeholder)));
     }
 
     public void fillPasswordAndEmail(String emailRecipientName, String domain, String password) {
-        WebElement choosePasswordInputField = driver.findElement(getCredentialsLocator("Choose Password"));
+        WebElement choosePasswordInputField = getCredentials("Choose Password");
         choosePasswordInputField.clear();
         choosePasswordInputField.sendKeys(password);
 
-        WebElement yourEmailInputField = driver.findElement(getCredentialsLocator("Your email"));
+        WebElement yourEmailInputField = getCredentials("Your email");
         yourEmailInputField.clear();
         yourEmailInputField.sendKeys(emailRecipientName);
 
-        WebElement domainInputField = driver.findElement(getCredentialsLocator("Domain"));
+        WebElement domainInputField = getCredentials("Domain");
         domainInputField.clear();
         domainInputField.sendKeys(domain);
 
@@ -42,7 +42,8 @@ public class Card1Password extends Card {
         driver.findElement(iDoNotAcceptTermsAndConditionsLocator).click();
     }
 
-    public void goToTheNextPage() {
+    public Card2ThisIsMe goToTheNextPage() {
         driver.findElement(nextLinkLocator).click();
+        return new Card2ThisIsMe(driver);
     }
 }
