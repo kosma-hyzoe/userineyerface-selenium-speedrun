@@ -21,7 +21,7 @@ public class Card2ThisIsMe extends Form {
             By.xpath("//label[@for='interest_unselectall']"), "'Unselect all'");
     private final IButton nextButton = AqualityServices.getElementFactory().getButton(
             By.xpath("//button[text()='Next']"), "'Next'");
-    private final ILabel uploadedAvatarImage = AqualityServices.getElementFactory().getLabel(
+    private final ILabel userUploadedAvatarImage = AqualityServices.getElementFactory().getLabel(
             By.className("avatar-and-interests__avatar-image"), "A user uploaded avatar image");
 
     public Card2ThisIsMe() {
@@ -30,7 +30,7 @@ public class Card2ThisIsMe extends Form {
 
     public void uploadImageManually() {
        uploadImageLink.click();
-       waitForTrue(() -> uploadedAvatarImage.state().isDisplayed(), WaitDuration.LONG,
+       waitForTrue(() -> userUploadedAvatarImage.state().isDisplayed(), WaitDuration.LONG,
                "image should be manually uploaded");
     }
 
