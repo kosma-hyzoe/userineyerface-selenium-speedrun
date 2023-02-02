@@ -13,9 +13,9 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 
-public class UserinyerfaceTest extends BaseTest {
+public class BasicFunctionalityTest extends BaseTest {
     @Test
-    public void cards1to3ShouldDisplay() throws JsonProcessingException {
+    public void cards1through3ShouldDisplay() throws JsonProcessingException {
         Home home = new Home();
         assertTrue(home.state().isDisplayed(), "Failed to display the home page");
 
