@@ -2,11 +2,11 @@
 
 ![You are awesome](you-are-awesome.png)
 
-I fist came across [userinyerface.com](https://userinyerface.com/) during my
+I first came across [userinyerface.com](https://userinyerface.com/) during my
 QA automation engineering internship. It challenges the user 
-to register on a fictional page which uses the worst possible UI practices.
-I liked the concept a lot, and decided to "speedrun" it to present
-what I've learned. 
+to register on a fictional page which uses the worst possible UI practices,
+as fast as possible. I liked the concept a lot, and decided to "speedrun" it
+to present what I've learned. 
 
 <!-- TOC -->
   * [How to run](#how-to-run)
