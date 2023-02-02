@@ -17,22 +17,23 @@ public class Card1LoginInfo extends Card {
         super(driver);
     }
 
-    private WebElement getCredentials(String placeholder){
-        return driver.findElement(By.xpath(String.format("//input[contains(@placeholder, '%s')]", placeholder)));
-    }
+    public void fillInLoginInfo(String emailRecipientName, String emailDomain, String password) {
+        final String[][] inputFields = {
+                {"Choose Password", password},
+                {"Your email", emailRecipientName},
+                {"Domain", emailDomain}
+        };
 
-    public void fillPasswordAndEmail(String emailRecipientName, String domain, String password) {
-        WebElement choosePasswordInputField = getCredentials("Choose Password");
-        choosePasswordInputField.clear();
-        choosePasswordInputField.sendKeys(password);
+        for (String[] field : inputFields){
+            String placeholder = field[0];
+            String value = field[1];
 
-        WebElement yourEmailInputField = getCredentials("Your email");
-        yourEmailInputField.clear();
-        yourEmailInputField.sendKeys(emailRecipientName);
+            By inputFieldLocator = By.xpath(String.format("//input[contains(@placeholder, '%s')]", placeholder));
+            WebElement inputField = driver.findElement(inputFieldLocator);
 
-        WebElement domainInputField = getCredentials("Domain");
-        domainInputField.clear();
-        domainInputField.sendKeys(domain);
+            inputField.clear();
+            inputField.sendKeys(value);
+        }
 
         driver.findElement(subDomainLocator).click();
         driver.findElement(dotOrgChoiceLocator).click();
