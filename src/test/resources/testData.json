@@ -1,0 +1,28 @@
+{
+  "baseUrl": "https://userinyerface.com",
+  "loginInfo": {
+    "password": "Foobar1234",
+    "emailRecipientName": "foo",
+    "emailDomain": "bar",
+    "emailSubDomain": ".org"
+  },
+  "interests": [
+    "ponies",
+    "enveloppes",
+    "closets"
+  ],
+  "waitDurations": {
+    "long": {
+      "seconds": 15,
+      "millis": 0
+    },
+    "medium": {
+      "seconds": 5,
+      "millis": 0
+    },
+    "short": {
+      "seconds": 2,
+      "millis": 0
+    }
+  }
+}
