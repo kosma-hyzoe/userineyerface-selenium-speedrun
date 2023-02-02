@@ -9,12 +9,12 @@ as fast as possible. I liked the concept a lot, and decided to "speedrun" it
 to present what I've learned. 
 
 <!-- TOC -->
-  * [How to run](#how-to-run)
-  * [How to run tests](#how-to-run-tests)
-  * [Current record](#current-record)
-  * [Notes on implementation details](#notes-on-implementation-details)
-  * [Issues and limitations](#issues-and-limitations)
-  * [Specifics on my attempt strategy](#specifics-on-my-attempt-strategy)
+* [How to run](#how-to-run)
+* [How to run tests](#how-to-run-tests)
+* [Notes on implementation details](#notes-on-implementation-details)
+* [Issues and limitations](#issues-and-limitations)
+* [Specifics on my attempt strategy](#specifics-on-my-attempt-strategy)
+* [Current record](#current-record)
 <!-- TOC -->
 
 ## How to run
@@ -35,11 +35,6 @@ as needed. No drivers required thanks to Aquality
 3. Run one or more tests, either manually or using
 `testng.xml`
 
-## Current record
-
-**Time on page**: 00:00:04
-
-**Measured time**: 0m:4s:647568989ns
 
 ## Notes on implementation details
 
@@ -78,3 +73,9 @@ reason.
    - Ideally I would only do it with year, but day and month misbehave. 
    - A `for-each` loop with `if-else` is probably far from ideal - for now I'm
    a little fed up with the project, but I might try to improve it later on.
+
+### Current record
+
+**Time on page**: 00:00:04
+
+**Measured time**: 0m:4s:647568989ns
