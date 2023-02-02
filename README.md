@@ -40,3 +40,12 @@ but useful.
 
 The speedrun currently operates on Chrome, but I'll try to set it up on
 Chromium and/or other Chromium-based browsers as well.
+
+## Issues and limitations
+
+* For some reason, the speedrun fails  when running with a 
+  `--headless` ChromeOption
+* For now the profile image must be uploaded manually.
+  `webElement.sendKeys("/path/to/some-image.png")` doesn't work.
+  I originally used an AutoIT script on Windows 10, and I'll try to figure
+  out something similar for Linux and/or reintroduce the Windows script
