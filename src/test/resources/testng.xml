@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Userinyerface UI tests">
+    <test name="Basic functionality">
+        <classes>
+            <class name="userinyerface.tests.BasicFunctionalityTest">
+            <methods>
+                <exclude name="cards1through3ShouldDisplay"/>
+                <include name="canHideHelpForm"/>
+                <include name="canCloseCookies"/>
+                <include name="doesTimerStartWith00_00_00"/>
+            </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
