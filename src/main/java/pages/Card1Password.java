@@ -10,16 +10,15 @@ import org.openqa.selenium.support.locators.RelativeLocator;
 public class Card1Password extends Card {
     By subDomainLocator = By.className("dropdown__field");
     By dotOrgChoiceLocator = RelativeLocator.with(By.tagName("div")).below(subDomainLocator);
-    // todo try by class only
-    By iDoNotAcceptTermsAndConditionsLocator = By.xpath("//span[@class=\"checkbox__box\"]/span");
-    By nextLinkLocator = By.xpath("//a[@class=\"button--secondary\" and text()=\"Next\"]");
+    By iDoNotAcceptTermsAndConditionsLocator = By.className("checkbox__box");
+    By nextLinkLocator = By.xpath("//a[contains(@class, 'button--secondary') and text()='Next']");
 
     public Card1Password(WebDriver driver) {
         super(driver);
     }
 
     private static By getCredentialsLocator(String placeholder){
-        return By.xpath(String.format("//input[contains(@placeholder, \"%s\")]", placeholder));
+        return By.xpath(String.format("//input[contains(@placeholder, '%s')]", placeholder));
     }
 
     public void fillPasswordAndEmail(String emailRecipientName, String domain, String password) {

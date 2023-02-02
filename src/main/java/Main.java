@@ -48,7 +48,6 @@ public class Main {
             Card1Password card1Password = new Card1Password(driver);
             card1Password.fillPasswordAndEmail("foo", "bar", "Foobar1234");
             card1Password.acceptTermsAndConditions();
-            System.out.println("Time on page: " + card1Password.getTime());
             card1Password.goToTheNextPage();
         } finally {
             long endTime = System.nanoTime();
