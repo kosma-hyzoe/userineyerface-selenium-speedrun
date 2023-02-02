@@ -1,31 +1,36 @@
 package pages;
 
+import java.util.List;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.locators.RelativeLocator;
 
-import java.util.List;
 
 
 public class Card3PersonalDetails {
     private final WebDriver driver;
     private final By dropdownFieldsLocator = By.className("dropdown__field");
     private final By nextButtonLocator = By.xpath("//button[text()='Next']");
+    private final By nonDateItemLocator = By.xpath("//div[contains(@class, '-item')]");
+    private final By inputFieldsLocator = By.tagName("input");
 
     public Card3PersonalDetails(WebDriver driver) {
        this.driver = driver;
     }
 
-    public Card3PersonalDetails fillInputFields() {
-        List<WebElement> inputFields = driver.findElements(By.tagName("input"));
+    public Card3PersonalDetails fillInputFields(String keysToSend) {
+        List<WebElement> inputFields = driver.findElements(inputFieldsLocator);
 
         for (WebElement inputField : inputFields) {
             inputField.clear();
-            inputField.sendKeys("foo");
+            inputField.sendKeys(keysToSend);
         }
         return this;
+    }
+
+    private WebElement findDivByText(String text){
+        return driver.findElement(By.xpath(String.format("//div[text()='%s']", text)));
     }
 
     public Card3PersonalDetails selectDropdownFields(int year, int day, String month) {
@@ -35,22 +40,19 @@ public class Card3PersonalDetails {
             dropdownField.click();
 
             if (dropdownField.getText().equals("Choose a title")) {
-                driver.findElement(By.xpath("//div[text()='Mrs']")).click();
+                findDivByText("Mrs").click();
                 continue;
             }
 
-            WebElement item;
             if (dropdownField.getText().equals("Year")) {
-                item = driver.findElement(By.xpath(String.format("//div[text()='%d']", year)));
+                findDivByText(String.valueOf(year)).click();
             } else if (dropdownField.getText().equals("Day")) {
-                item = driver.findElement(By.xpath(String.format("//div[text()='%d']", day)));
+                findDivByText(String.valueOf(day)).click();
             } else if (dropdownField.getText().equals("Month")){
-                item = driver.findElement(By.xpath(String.format("//div[text()='%s']", month)));
+                findDivByText(month).click();
             } else {
-                By nonDateItemLocator = By.xpath("//div[contains(@class, '-item')]");
-                item = driver.findElement(RelativeLocator.with(nonDateItemLocator).near(dropdownField));
+                driver.findElement(RelativeLocator.with(nonDateItemLocator).near(dropdownField)).click();
             }
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", item);
         }
         return this;
     }
