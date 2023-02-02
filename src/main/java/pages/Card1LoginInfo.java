@@ -1,23 +1,23 @@
 package pages;
 
-import forms.Card;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.locators.RelativeLocator;
 
 
-public class Card1LoginInfo extends Card {
-    By subDomainLocator = By.className("dropdown__field");
-    By dotOrgChoiceLocator = RelativeLocator.with(By.tagName("div")).below(subDomainLocator);
-    By iDoNotAcceptTermsAndConditionsLocator = By.className("checkbox__box");
-    By nextLinkLocator = By.xpath("//a[contains(@class, 'button--secondary') and text()='Next']");
+public class Card1LoginInfo {
+    private final WebDriver driver;
+    private final By subDomainLocator = By.className("dropdown__field");
+    private final By dotOrgChoiceLocator = RelativeLocator.with(By.tagName("div")).below(subDomainLocator);
+    private final By iDoNotAcceptTermsAndConditionsLocator = By.className("checkbox__box");
+    private final By nextLinkLocator = By.xpath("//a[contains(@class, 'button--secondary') and text()='Next']");
 
     public Card1LoginInfo(WebDriver driver) {
-        super(driver);
+       this.driver = driver;
     }
 
-    public void fillInLoginInfo(String emailRecipientName, String emailDomain, String password) {
+    public Card1LoginInfo fillInLoginInfo(String emailRecipientName, String emailDomain, String password) {
         final String[][] inputFields = {
                 {"Choose Password", password},
                 {"Your email", emailRecipientName},
@@ -37,10 +37,13 @@ public class Card1LoginInfo extends Card {
 
         driver.findElement(subDomainLocator).click();
         driver.findElement(dotOrgChoiceLocator).click();
+
+        return this;
     }
 
-    public void acceptTermsAndConditions() {
+    public Card1LoginInfo acceptTermsAndConditions() {
         driver.findElement(iDoNotAcceptTermsAndConditionsLocator).click();
+        return this;
     }
 
     public Card2ThisIsMe goToTheNextPage() {

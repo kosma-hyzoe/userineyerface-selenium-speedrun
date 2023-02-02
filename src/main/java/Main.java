@@ -2,28 +2,23 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import pages.Card1LoginInfo;
-import pages.Card2ThisIsMe;
-import pages.Card3PersonalDetails;
-import pages.Home;
+import pages.*;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 public class Main {
 
-    public static final Logger logger = LoggerFactory.getLogger(Main.class);
-    public static JsonNode config;
+    private static long startTime;
+    private static JsonNode config;
+
     static {
         try (InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("config.json")) {
             config = new ObjectMapper().readTree(inputStream);
         } catch (IOException e) {
-            logger.error("Failed to load config.json from resources: \n" + e.getMessage());
+            System.out.println("ERROR: Failed to load config.json from resources: \n" + e.getMessage());
         }
     }
-    private static long startTime;
 
     private static final ChromeDriver driver;
 
@@ -56,11 +51,19 @@ public class Main {
 
             Card3PersonalDetails card3PersonalDetails = card2ThisIsMe.goToNextPage();
 
+            card3PersonalDetails.fillInputFields("foo");
+            card3PersonalDetails.selectDropdownFields(2022, 1, "April");
+
+            Card4ProveYouAreHuman card4ProveYouAreHuman = card3PersonalDetails.goToNextPage();
+            card4ProveYouAreHuman.checkAllCheckboxes();
+
+            YouAreAwesome youAreAwesome = card4ProveYouAreHuman.validate();
+            System.out.println("Time on page: " + youAreAwesome.getTime());
+
         } finally {
             long endTime = System.nanoTime();
             System.out.println("Measured time: " + getHumanReadableTime(endTime - startTime));
             driver.quit();
-
         }
     }
     private static String getHumanReadableTime(Long nanos){
